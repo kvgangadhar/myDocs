@@ -1,0 +1,43 @@
+Day1
+ kafka-run-class.bat kafka.admin.TopicCommand --delete --topic satishkumar --zookeeper localhost:2181
+
+kafka-topics.bat --list --zookeeper localhost:2181
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic test
+
+kafka-console-consumer.bat --zookeeper localhost:2181 --topic kafka
+
+kafka-console-consumer.bat --zookeeper localhost:2181 --topic test --from-beginning
+
+kafka-topics.bat --describe --zookeeper localhost:2181 --topic satishkumar
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic SK
+
+internal node replicas-ISR
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server1.properties
+
+.\bin\windows\kafka-server-start.bat .\config\server2.properties
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic KAFKA
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic KAFKA
+
+logical area where msgs are stored -partition
+===============================
+Day2
+
+producers,consumers,consumer groups
+
+inside broker lies the topic
+
+ack - scenario-- when 
+
+ack happens at batch level 
+
+kafka-producer-perf-test.bat --topic KAFKA1 --num-record 50 --record-size 1 --throughput 10 --producer-props bootstrap.servers=localhost:9092 key.serializer=org.apache.kafka.common.serialization.StringSerializer value.serializer=org.apache.kafka.common.serialization.StringDeserializer
+
+1 topic can have multiple partition
+
