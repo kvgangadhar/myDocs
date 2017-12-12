@@ -45,3 +45,18 @@ kafka-topics.bat --zookeeper localhost:2181 --alter --topic KAFKA1 --partitions 
 
 both assign and subsscribe cant run parallely - as it using 1 thread
 
+single consumer API
+poll is single poll API
+producer 
+micro batching 
+producer record has valid partitioning
+assign and subscribe method
+ack methods
+error occure retry occurs 
+consumer coordinator - zookeeper
+poll(100)-consumer consumes the data within this period
+
+
+
+Day3
+consumer groups
