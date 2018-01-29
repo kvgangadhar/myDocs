@@ -1,0 +1,91 @@
+we should always concentrate on locator
+
+No Title
+gfsh overview
+-------------
+GemFire shell
+set path=%path%;D:\GemFire\Pivotal_GemFire_827_b18_Windows\bin;
+
+>gfsh
+
+gfsh> help   -----all commands
+
+>help start -------help on specific command
+
+To start the locator
+>start locator --name=locator
+
+>list members --------shows members in cluster
+
+>help start server
+>help start locator
+>start server --name=server1
+
+once again execute command "list members" you will find it 2 members now
+
+
+
+Regions are nothing but maps - which stores key and value
+>help create region
+
+>create region --name=people --type=REPLICATE   (both attributes are compulsory)
+
+>list regions
+
+GemFire supports object query lang(OQL)
+>query --query="select * from /people"
+Result :true
+startCount : 0
+endCount : 20
+Rows : 0
+
+>put --key=1 --value="Sanjay Degaonkar" --region=people
+
+>describe region --name="people"
+
+one thing watch under this command
+Hosting Members : Server1
+no need to bother about server
+
+>start server --name=server2
+you will get error message
+diff port is required
+
+>start server --name=server2 --server-port=0   (0 indicates Gemfire dynamically selects port number)
+
+>list members
+ locator
+ server1
+ server2
+
+
+>describe region --name=people
+
+...
+Hosting Members : server2
+                  server1
+
+>stop server --name=server1
+
+>list members
+ locator
+ server2
+
+>query --query="select * from /people"
+still works
+
+>start server --name=server1
+
+
+gfsh>exit
+$>
+
+exit is just disconnecting, not shutting down servers
+
+>gfsh
+
+>connect ----------------to connect
+
+>shutdown --include-locators
+by default it shuts down only servers.
+don't type entire thing, use "tab" after two chars 
